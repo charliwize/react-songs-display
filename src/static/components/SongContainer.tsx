@@ -24,7 +24,7 @@ interface State {
     filteredSongs: Song[],
     searchLetter: string,
     levels: string[]
-    level: ""
+    averageDifficulty: number | undefined
 }
 export default class SongContainer extends React.PureComponent <Props, State>  {
     constructor (props: Props) {
@@ -38,9 +38,9 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
             songsPerPage: 5,
             filteredSongs: [],
             searchLetter: "",
-            level: "",
-            levels: []
-
+            averageDifficulty: undefined,
+            levels: [], 
+            
         }
     }
     async componentDidMount() {
@@ -69,13 +69,18 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
     }
     changeRating = async (song: Song, e: any) => {
         let request
-        request = await fetch('/songs/search?_id=' + song._id + '&rating=' + e, {
-            credentials: 'same-origin',
-            method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json',
+        try {
+            request = await fetch('/songs/search?_id=' + song._id + '&rating=' + e, {
+                credentials: 'same-origin',
+                method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                })
             })
-        })
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     searchSong = (e: any) => {
@@ -90,18 +95,21 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
 
     setLevel = async (e: any) => {
         let averageDifficulty
-        this.setState({ level: e.target.value })
-        
-        averageDifficulty = await fetch('/songs/avg/difficulty?level =' + e.target.value, {
-            credentials: 'same-origin',
-            method: 'POST',
-            headers: new Headers({
-                'Content-Type': 'application/json',
+        try {
+            averageDifficulty = await fetch('/songs/avg/difficulty?level=' + e.target.value, {
+                credentials: 'same-origin',
+                method: 'POST',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                })
             })
-        })
+            averageDifficulty = await averageDifficulty.json()
+            this.setState({ averageDifficulty })
+        } catch (error) { console.log(" +error") }
     }
 
     render() {
+        console.log(this.state.averageDifficulty)
         const { songs, currentPage, filteredSongs, searchLetter } = this.state
         const lastSongIndexInPage = currentPage * this.state.songsPerPage
         const firstSongIndex = lastSongIndexInPage - this.state.songsPerPage
@@ -114,7 +122,6 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
                 <div className="wrapper">
                     <LevelSelect 
                         levels = {this.state.levels}
-                        level = {this.state.level}
                         setLevel = {this.setLevel}
                     />
                     <SearchBox searchSong = {this.searchSong} />

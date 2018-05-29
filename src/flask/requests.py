@@ -29,11 +29,17 @@ class Requests:
         songs_collection = self.mongo.db.songs_collection
         song = songs_collection.find_one_and_update(
                 { '_id': ObjectId(request.args['_id']) }, { "$set": {'rating': float(request.args.get('rating'))}},
-            return_document=ReturnDocument.AFTER, upsert=True
+            return_document=ReturnDocument.AFTER, upsert=False
         )
-        print(song)
         return ''
     
     def getDifficultyAverage(self):
-        print(request.args)
-        return ''
+        array = []
+        songs_collection = self.mongo.db.songs_collection
+        levelSongs = songs_collection.find({ 'level': int(request.args['level'])})
+        for doc in levelSongs:
+            array.append(doc['difficulty'])
+
+        average = round(sum(array) / len(array), 2)
+        return Response(dumps(average), status=200,
+            mimetype='application/json')

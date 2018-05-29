@@ -28,6 +28,10 @@ html, body {
     border-bottom: rgba(255, 255, 255, 0.21) 1px solid;
     padding:5px;
 }
+.song-row:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transition: 0.3s;
+}
 .img-wrapper {
     width: 100px;
     height: 70px;

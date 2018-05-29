@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Button, Row, Col, FormControl, FormGroup, HelpBlock } from 'react-bootstrap';
 
 interface Props {
-    levels: string[],
-    level: string
     setLevel: (e: any) => void
 }
 const LevelSelect = (Props: Props) => {
@@ -11,10 +9,11 @@ const LevelSelect = (Props: Props) => {
         <FormGroup>
             <FormControl
                 componentClass="select"
-                defaultValue={Props.level ? Props.level : ""}
+                defaultValue={0}
                 onChange={Props.setLevel}
             >
             <option value="--Filter by difficulty level--"/>
+            
                 {
                     Props.levels.map(level => {
                     return(
