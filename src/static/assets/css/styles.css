@@ -1,0 +1,107 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+html, body {
+    overflow: auto;
+}
+#app{
+    background-color: #000;
+}
+.artist, .title {
+    font-size: 20px;
+}
+.no-pad-marg {
+    margin: 0px;
+    padding: 0px
+}
+.artist {
+    color: rgba(255, 255, 255, 0.54);
+}
+.wrapper {
+    color: #fff;
+    font-weight: 300;
+    width: 70%;
+    margin: auto;
+    padding: 15px;
+}
+.song-row {
+    border-bottom: rgba(255, 255, 255, 0.21) 1px solid;
+    padding:5px;
+}
+.img-wrapper {
+    width: 100px;
+    height: 70px;
+    background: #51ff00d6;;
+    margin: auto;
+    text-align: center;
+    border-radius: 10px
+}
+.img {
+    width: 70%;
+    margin: auto;
+    padding: 10px;
+}
+
+.CircularProgressbar {
+    width: 55px;
+    margin-top: 10px;
+}
+  
+.CircularProgressbar .CircularProgressbar-path {
+    stroke: #51ff00d6;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.5s ease 0s;
+}
+
+.CircularProgressbar .CircularProgressbar-trail {
+    stroke: #d6d6d6;
+}
+
+.CircularProgressbar .CircularProgressbar-text {
+    fill: #fff;
+    font-size: 41px;
+    text-anchor: middle;
+    dominant-baseline: central;
+}
+
+.CircularProgressbar .CircularProgressbar-background {
+    fill: #d6d6d6;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
+    fill: #3e98c7;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-text {
+    fill: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-path {
+    stroke: #fff;
+}
+
+.CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-trail {
+    stroke: transparent;
+}
+.gi-2x { font-size: 2em; color: rgba(255, 255, 255, 0.54) }
+
+.pagination-number{
+ text-align: center
+}
+.pagination-number span{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #fff;
+    display: inline-block;
+    cursor: pointer;
+}
+.err{
+    margin: 100px auto;
+    width: 60%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #51ff00d6;
+}
+.songs_list {
+    margin-top: 80px
+}

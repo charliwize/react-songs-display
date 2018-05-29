@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "es2015",
+        "target": "es5",
+        "jsx": "react",
+        "lib": [ "es6", "dom" ],
+        "pretty": true,
+        "allowJs": true,
+        "baseUrl": "./src",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "removeComments": true,
+    },
+    "include": [
+        "./src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "typeRoots": ["./src/types"],
+}
