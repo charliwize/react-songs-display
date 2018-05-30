@@ -44,9 +44,9 @@ Flask-MongoAlchemy==0.5.1
 flask-mongoengine==0.9.5
 Flask-PyMongo==0.5.2
 Flask-WTF==0.14.2
-gunicorn==19.8.1
 gevent==1.2.1
 greenlet==0.4.12
+gunicorn==19.8.1
 h5py==2.7.0
 HeapDict==1.0.0
 html5lib==0.999
