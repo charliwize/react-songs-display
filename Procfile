@@ -1,2 +1,2 @@
 
-web: gunicorn --pythonpath src/flask/ route:app --preload
+web: gunicorn route:app --preload
