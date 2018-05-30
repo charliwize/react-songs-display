@@ -9,7 +9,13 @@ This repo uses ReactJS to display songs list from a JSON file. The backend is wr
 * npm install
 * npm run watch
 * cd /src/server 
-* python route.py
+```
+
+if you dont have flask-pymongo installed run `pip install flask-pymongo`
 
 ```
+* python route.py
+```
+
+
 
