@@ -31,6 +31,5 @@ def update_songs():
 def getDifficultyAverage():
     return requests.getDifficultyAverage()
 
-
 if __name__ == "__main__":
     app.run(debug=True)
