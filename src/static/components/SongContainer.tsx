@@ -26,7 +26,7 @@ interface State {
     levels: string[],
     averageDifficulty: number | undefined
 }
-export default class SongContainer extends React.PureComponent<Props, State>  {
+export default class SongContainer extends React.Component<Props, State>  {
     constructor(props: Props) {
         super(props);
 
@@ -43,7 +43,7 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
         }
     }
     async componentDidMount() {
-        let songs: any
+        let songs
         try {
             songs = await fetch('/songs', {
                 credentials: 'same-origin',
@@ -54,9 +54,7 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
             })
             songs = await songs.json()
         } catch (e) {
-            if (!songs.ok) {
-                this.setState({ error: "Error in getting songs, try again later..." })
-            }
+            this.setState({ error: "Error in getting songs, try again later..." })
         }
         if (songs.length) {
             const levels = Array.from(new Set([...songs].map(song => song.level)))
@@ -78,14 +76,14 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
                 })
             })
         } catch (error) {
-            this.setState({ error: "Trouble making ratings" })
+            this.setState({ error: "Problem making ratings" })
         }
     }
 
     public searchSong = (e: any) => {
         const searchLetter = e.target.value.toLowerCase()
         let filteredSongs = [...this.state.songs]
-        filteredSongs = filteredSongs.filter(function (item) {
+        filteredSongs = filteredSongs.filter((item) => {
             return item.title.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
                 || item.artist.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
         });
@@ -96,7 +94,6 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
     public setLevel = async (e: any) => {
         let averageDifficulty
         let filteredSongs = [...this.state.songs]
-
         filteredSongs = filteredSongs.filter(song => {
             return song.level === Number(e.target.value)
         })

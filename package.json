@@ -12,11 +12,11 @@
 		"prettier": "./node_modules/.bin/prettier --write 'yousician/**/*.{ts,tsx}'"
 	},
 	"lint-staged": {
-		"yousician/**/*.{ts,json,css,md,tsx}": [
+		"./**/*.{ts,json,css,md,tsx}": [
 			"prettier --write",
 			"git add"
 		],
-		"yousician/**/*.{ts,js,tsx,jsx}": [
+		"./**/*.{ts,js,tsx,jsx}": [
 			"jest --findRelatedTests"
 		]
 	},
