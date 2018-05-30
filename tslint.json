@@ -1,20 +1,42 @@
 {
     "defaultSeverity": "error",
-    "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+    "extends": [
+        "tslint:latest",
+        "tslint-react",
+        "tslint-config-prettier"
+    ],
     "jsRules": {},
     "rules": {
-        "quotemark": [false, "single", "jsx-double"],
-        "semicolon": [true, "never"],
-        "interface-name": [true, "never-prefix"],
+        "quotemark": [
+            false,
+            "single",
+            "jsx-double"
+        ],
+        "semicolon": [
+            true,
+            "never"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
         "object-literal-sort-keys": false,
         "jsx-boolean-value": false,
         "jsx-no-multiline-js": false,
-        "indent": [true, "tabs"],
+        "indent": [
+            true,
+            "tabs"
+        ],
         "ordered-imports": [
             false
         ],
-        "whitespace": [true, "no-check-type-operator"],
-        "max-line-length": [false],
+        "whitespace": [
+            true,
+            "no-check-type-operator"
+        ],
+        "max-line-length": [
+            false
+        ],
         "member-ordering": false,
         "no-console": true,
         "jsx-no-lambda": false,
@@ -22,12 +44,12 @@
         "trailing-comma": [
             true,
             {
-            "multiline": {
-                "objects": "always",
-                "arrays": "always",
-                "functions": "never",
-                "typeLiterals": "ignore"
-            }
+                "multiline": {
+                    "objects": "always",
+                    "arrays": "always",
+                    "functions": "never",
+                    "typeLiterals": "ignore"
+                }
             }
         ]
     },

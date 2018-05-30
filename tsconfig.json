@@ -6,7 +6,10 @@
         "module": "es2015",
         "target": "es5",
         "jsx": "react",
-        "lib": [ "es6", "dom" ],
+        "lib": [
+            "es6",
+            "dom"
+        ],
         "pretty": true,
         "allowJs": true,
         "baseUrl": "./src",
@@ -21,9 +24,7 @@
     "exclude": [
         "node_modules"
     ],
-    "typeRoots": ["./src/types"],
-    "extends": [
-        "tslint:latest",
-        "tslint-config-prettier"
-  ]
+    "typeRoots": [
+        "./src/types"
+    ],
 }

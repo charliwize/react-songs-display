@@ -14,20 +14,20 @@ export interface Song {
     "rating": string,
     "_id": string
 }
-interface Props {}
+interface Props { }
 interface State {
     error: string,
     songs: Song[],
     letter: string,
-    currentPage:  number,
+    currentPage: number,
     songsPerPage: number,
     filteredSongs: Song[],
     searchLetter: string,
     levels: string[],
     averageDifficulty: number | undefined
 }
-export default class SongContainer extends React.PureComponent <Props, State>  {
-    constructor (props: Props) {
+export default class SongContainer extends React.PureComponent<Props, State>  {
+    constructor(props: Props) {
         super(props);
 
         this.state = {
@@ -39,33 +39,33 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
             filteredSongs: [],
             searchLetter: "",
             averageDifficulty: undefined,
-            levels: [], 
-            
+            levels: [],
+
         }
     }
     async componentDidMount() {
         let songs
         try {
-            songs= await fetch('/get', {
+            songs = await fetch('/get', {
                 credentials: 'same-origin',
-				method: 'GET',
-				headers: new Headers({
-					'Content-Type': 'application/json',
-				}),
+                method: 'GET',
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                }),
             })
 
             songs = await songs.json()
         } catch (error) { return }
 
 
-        if(songs.length) {
-            const levels = Array.from(new Set([...songs].map(song => song.level )))
+        if (songs.length) {
+            const levels = Array.from(new Set([...songs].map(song => song.level)))
             this.setState({ songs, levels })
         }
     }
 
     nextPage = (event: any) => {
-        this.setState({ currentPage: Number(event.target.id)})
+        this.setState({ currentPage: Number(event.target.id) })
     }
     changeRating = async (song: Song, e: any) => {
         let request
@@ -80,15 +80,16 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
         } catch (error) {
             console.log(error)
         }
-        
+
     }
 
     searchSong = (e: any) => {
         const searchLetter = e.target.value.toLowerCase()
         let filteredSongs = [...this.state.songs]
-        filteredSongs = filteredSongs.filter(function(item) {
-        return item.title.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
-            || item.artist.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1});
+        filteredSongs = filteredSongs.filter(function (item) {
+            return item.title.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
+                || item.artist.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
+        });
 
         this.setState({ searchLetter, filteredSongs });
     }
@@ -113,40 +114,40 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
         const { songs, currentPage, filteredSongs, searchLetter } = this.state
         const lastSongIndexInPage = currentPage * this.state.songsPerPage
         const firstSongIndex = lastSongIndexInPage - this.state.songsPerPage
-        let currentSongs = filteredSongs.length ? filteredSongs.slice(firstSongIndex, lastSongIndexInPage) 
-                                                : searchLetter.length && !filteredSongs.length ? []
-                                                : songs.slice(firstSongIndex, lastSongIndexInPage)
+        let currentSongs = filteredSongs.length ? filteredSongs.slice(firstSongIndex, lastSongIndexInPage)
+            : searchLetter.length && !filteredSongs.length ? []
+                : songs.slice(firstSongIndex, lastSongIndexInPage)
 
         return (
             this.state.songs.length ? (
                 <div className="wrapper">
-                    <LevelSelect 
-                        levels = {this.state.levels}
-                        setLevel = {this.setLevel}
+                    <LevelSelect
+                        levels={this.state.levels}
+                        setLevel={this.setLevel}
                     />
-                    <SearchBox searchSong = {this.searchSong} />
+                    <SearchBox searchSong={this.searchSong} />
                     <Row className="songs_list">
-                    {
-                        currentSongs.map((song: Song, i: number) => {
-                            return (
-                                <SongRow 
-                                    song={song} 
-                                    changeRating={this.changeRating}
-                                    key={i}
-                                />
-                            )
-                        })
-                    }
+                        {
+                            currentSongs.map((song: Song, i: number) => {
+                                return (
+                                    <SongRow
+                                        song={song}
+                                        changeRating={this.changeRating}
+                                        key={i}
+                                    />
+                                )
+                            })
+                        }
                     </Row>
-                    <Pagination 
-                        songs = {filteredSongs.length ? filteredSongs : 
+                    <Pagination
+                        songs={filteredSongs.length ? filteredSongs :
                             searchLetter.length && !filteredSongs.length ? [] :
-                            this.state.songs} 
-                        nextPage = {this.nextPage}
-                        songsPerPage = {this.state.songsPerPage}
+                                this.state.songs}
+                        nextPage={this.nextPage}
+                        songsPerPage={this.state.songsPerPage}
                     />
                 </div>
             ) : null
-        )   
+        )
     }
 }
