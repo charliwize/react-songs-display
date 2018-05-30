@@ -35,7 +35,7 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
             songs: [],
             letter: "",
             currentPage: 1,
-            songsPerPage: 5,
+            songsPerPage: 3,
             filteredSongs: [],
             searchLetter: "",
             averageDifficulty: undefined,
@@ -44,20 +44,21 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
         }
     }
     async componentDidMount() {
-        let songs
+        let songs: any
         try {
-            songs = await fetch('/get', {
+            songs = await fetch('/songs', {
                 credentials: 'same-origin',
                 method: 'GET',
                 headers: new Headers({
                     'Content-Type': 'application/json',
                 }),
             })
-
             songs = await songs.json()
-        } catch (error) { return }
-
-
+        } catch (e) {
+            if (!songs.ok) {
+                this.setState({ error: "Error in getting songs, try again later..." })
+            }
+        }
         if (songs.length) {
             const levels = Array.from(new Set([...songs].map(song => song.level)))
             this.setState({ songs, levels })
@@ -70,7 +71,7 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
     changeRating = async (song: Song, e: any) => {
         let request
         try {
-            request = await fetch('/songs/search?_id=' + song._id + '&rating=' + e, {
+            request = await fetch('/songs/rating/song_id?_id=' + song._id + '&rating=' + e, {
                 credentials: 'same-origin',
                 method: 'POST',
                 headers: new Headers({
@@ -78,9 +79,8 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
                 })
             })
         } catch (error) {
-            console.log(error)
+            this.setState({ error: "Trouble making ratings" })
         }
-
     }
 
     searchSong = (e: any) => {
@@ -106,11 +106,10 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
             })
             averageDifficulty = await averageDifficulty.json()
             this.setState({ averageDifficulty })
-        } catch (error) { console.log(" +error") }
+        } catch (error) { console.log("error") }
     }
 
     render() {
-        console.log(this.state.averageDifficulty)
         const { songs, currentPage, filteredSongs, searchLetter } = this.state
         const lastSongIndexInPage = currentPage * this.state.songsPerPage
         const firstSongIndex = lastSongIndexInPage - this.state.songsPerPage
@@ -121,11 +120,17 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
         return (
             this.state.songs.length ? (
                 <div className="wrapper">
-                    <LevelSelect
-                        levels={this.state.levels}
-                        setLevel={this.setLevel}
-                    />
-                    <SearchBox searchSong={this.searchSong} />
+                    <Row>
+                        <Col md={5}>
+                            <LevelSelect
+                                levels={this.state.levels}
+                                setLevel={this.setLevel}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={5}> <SearchBox searchSong={this.searchSong} /></Col>
+                    </Row>
                     <Row className="songs_list">
                         {
                             currentSongs.map((song: Song, i: number) => {
@@ -147,7 +152,7 @@ export default class SongContainer extends React.PureComponent<Props, State>  {
                         songsPerPage={this.state.songsPerPage}
                     />
                 </div>
-            ) : null
+            ) : <div className="error alert alert-info" role="alert">{this.state.error}</div>
         )
     }
 }

@@ -3,9 +3,13 @@ body {
 }
 html, body {
     overflow: auto;
+    min-height: 100%;
+    height: 100%;
 }
 #app{
     background-color: #000;
+    height: 100%;
+    padding: 50px;
 }
 .artist, .title {
     font-size: 20px;
@@ -20,7 +24,7 @@ html, body {
 .wrapper {
     color: #fff;
     font-weight: 300;
-    width: 70%;
+    width: 81%;
     margin: auto;
     padding: 15px;
 }
@@ -108,4 +112,18 @@ html, body {
 }
 .songs_list {
     margin-top: 80px
+}
+.error{
+    text-align: center;
+    /* color: #fff; */
+    /* padding: 50px; */
+    width: 50%;
+    margin: auto;
+}   
+.text-box {
+    background: #000;
+    color: #fff;
+}
+input::placeholder  {
+    color: #fff
 }
