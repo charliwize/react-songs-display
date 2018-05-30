@@ -12,10 +12,10 @@ requests = Requests(mongo=mongo)
 
 @app.route('/')
 def index():
-    with open('songs.json', 'r') as f:
-        comments = json.loads(f.read())
-    songs = mongo.db.songs_collection.insert_many(comments)
-    # print(songs)
+    # with open('songs.json', 'r') as f:
+    #     comments = json.loads(f.read())
+    # songs = mongo.db.songs_collection.insert_many(comments)
+    # # print(songs)
     return render_template('index.html')
 
 @app.route('/get')

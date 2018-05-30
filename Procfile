@@ -1,2 +1,2 @@
 
-web: sh -c 'cd ./src/flask && python route.py'
+web: gunicorn --pythonpath src/flask/ route:app
