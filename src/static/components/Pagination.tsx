@@ -3,8 +3,8 @@ import { Button, Row, Col } from 'react-bootstrap';
 import { Song } from './SongContainer'
 
 interface Props {
-    songs: Song[]
-    nextPage: (e: any) => void
+    songs: Song[],
+    nextPage: (e: any) => void,
     songsPerPage: number
 }
 

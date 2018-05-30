@@ -23,7 +23,7 @@ interface State {
     songsPerPage: number,
     filteredSongs: Song[],
     searchLetter: string,
-    levels: string[]
+    levels: string[],
     averageDifficulty: number | undefined
 }
 export default class SongContainer extends React.PureComponent <Props, State>  {
@@ -139,7 +139,9 @@ export default class SongContainer extends React.PureComponent <Props, State>  {
                     }
                     </Row>
                     <Pagination 
-                        songs = {filteredSongs.length ? filteredSongs : searchLetter.length && !filteredSongs.length ? [] : this.state.songs} 
+                        songs = {filteredSongs.length ? filteredSongs : 
+                            searchLetter.length && !filteredSongs.length ? [] :
+                            this.state.songs} 
                         nextPage = {this.nextPage}
                         songsPerPage = {this.state.songsPerPage}
                     />

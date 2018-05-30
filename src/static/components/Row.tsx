@@ -5,8 +5,8 @@ import CircularProgressbar from 'react-circular-progressbar';
 import { Song } from './SongContainer'
 
 interface Props {
-    song: Song
-    changeRating: (song: Song, e: any) => void
+    song: Song,
+    changeRating: (song: Song, e: any) => void,
     key: number
 }
 const SongRow = (Props: Props) => {

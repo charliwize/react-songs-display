@@ -24,7 +24,7 @@ module.exports = {
             {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader'
-            },
+            }, 
             { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
 		]
     },

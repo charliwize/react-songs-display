@@ -7,7 +7,18 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "./node_modules/.bin/webpack-dev-server --config webpack.dev.config.js",
 		"watch": "webpack --progress -d --config webpack.dev.config.js --watch",
-		"prettier-watch": "onchange '**/*.tsx' -- prettier --write {{changed}}"
+		"prettier-watch": "onchange '**/*.tsx' -- prettier --write {{changed}}",
+		"lint": "./node_modules/.bin/tslint src/**/*.{ts,tsx}",
+		"prettier": "./node_modules/.bin/prettier --write 'yousician/**/*.{ts,tsx}'"
+	},
+	"lint-staged": {
+		"yousician/**/*.{ts,json,css,md,tsx}": [
+			"prettier --write",
+			"git add"
+		],
+		"yousician/**/*.{ts,js,tsx,jsx}": [
+			"jest --findRelatedTests"
+		]
 	},
 	"author": "Charles",
 	"license": "ISC",
@@ -19,6 +30,7 @@
 		"@types/webpack-env": "^1.13.6",
 		"css-loader": "^0.28.11",
 		"less": "^3.0.4",
+		"prettierrc": "0.0.0-5",
 		"react": "^16.4.0",
 		"react-bootstrap": "^0.32.1",
 		"react-circular-progressbar": "^0.8.0",
@@ -43,10 +55,15 @@
 		"babel-preset-react": "^6.24.1",
 		"babel-preset-stage-0": "^6.24.1",
 		"babel-register": "^6.26.0",
+		"eslint": "^4.19.1",
+		"eslint-loader": "^2.0.0",
+		"eslint-plugin-prettier": "^2.6.0",
 		"file-loader": "^1.1.11",
 		"less-loader": "^4.1.0",
-		"prettier": "1.13.0",
 		"source-map-loader": "^0.2.3",
+		"tslint": "^5.10.0",
+		"tslint-config-prettier": "^1.13.0",
+		"tslint-react": "^3.6.0",
 		"typescript": "^2.8.3"
 	},
 	"babel": {
