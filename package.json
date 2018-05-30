@@ -9,7 +9,9 @@
 		"watch": "webpack --progress -d --config webpack.dev.config.js --watch",
 		"prettier-watch": "onchange '**/*.tsx' -- prettier --write {{changed}}",
 		"lint": "./node_modules/.bin/tslint src/**/*.{ts,tsx}",
-		"prettier": "./node_modules/.bin/prettier --write 'yousician/**/*.{ts,tsx}'"
+		"prettier": "./node_modules/.bin/prettier --write 'yousician/**/*.{ts,tsx}'",
+		"heroku-prebuild": "",
+		"heroku-postbuild": "webpack --progress -d --config webpack.dev.config.js --watch"
 	},
 	"lint-staged": {
 		"yousician/**/*.{ts,json,css,md,tsx}": [
