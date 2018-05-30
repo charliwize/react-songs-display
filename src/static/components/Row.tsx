@@ -14,12 +14,12 @@ const SongRow = (Props: Props) => {
         <Row className="song-row">
             <Col md={3}>
                 <div className="img-wrapper">
-                    <img src={require('../assets/images/fingerprint.png')} className="img"/>
+                    <img src={require('../assets/images/fingerprint.png')} className="img" />
                 </div>
             </Col>
             <Col md={2}>
-                <CircularProgressbar 
-                    percentage={Props.song.level} 
+                <CircularProgressbar
+                    percentage={Props.song.level}
                     textForPercentage={(text) => `${text}`}
                     initialAnimation={true}
                     className="level-bar"
@@ -46,7 +46,7 @@ const SongRow = (Props: Props) => {
                 </Row>
             </Col>
         </Row>
-       
+
     )
 }
 

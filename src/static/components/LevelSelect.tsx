@@ -13,17 +13,17 @@ const LevelSelect = (Props: Props) => {
                 defaultValue=""
                 onChange={Props.setLevel}
             >
-            <option value="--Filter by difficulty level--"/>
-            
+                <option value="--Filter by difficulty level--" />
+
                 {
                     Props.levels.map(level => {
-                    return(
-                        <option value={level} key={level}>
-                            {level}
-                        </option>
-                    )
-                })
-            }
+                        return (
+                            <option value={level} key={level}>
+                                {level}
+                            </option>
+                        )
+                    })
+                }
             </FormControl>
         </FormGroup>
     )
