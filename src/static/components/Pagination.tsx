@@ -6,6 +6,7 @@ interface Props {
     songs: Song[],
     nextPage: (e: any) => void,
     songsPerPage: number
+    currentPage: number
 }
 
 const Pagination = (Props: Props) => {
@@ -21,6 +22,7 @@ const Pagination = (Props: Props) => {
                     pageNumber.map(number => {
                         return (
                             <span
+                                className={Props.currentPage === number ? 'active' : ''}
                                 key={number}
                                 id={number.toString()}
                                 onClick={Props.nextPage}

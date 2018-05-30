@@ -7,7 +7,7 @@ const SearchBox = (Props: Props) => {
         <input
             className="form-control text-box"
             type="text"
-            placeholder="looking for a song ?"
+            placeholder="looking for a song?"
             onChange={Props.searchSong} />
     )
 }

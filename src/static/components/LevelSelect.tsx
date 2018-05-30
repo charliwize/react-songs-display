@@ -14,7 +14,7 @@ const LevelSelect = (Props: Props) => {
                 className="text-box"
                 onChange={Props.setLevel}
             >
-                <option >--Filter by difficulty level--</option>
+                <option value="">filter by level</option>
 
                 {
                     Props.levels.map(level => {

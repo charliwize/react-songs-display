@@ -124,6 +124,10 @@ html, body {
     background: #000;
     color: #fff;
 }
-input::placeholder  {
-    color: #fff
+.active {
+    background: #fff;
+    color: #000;
+}
+.pagination-number{
+    margin-top: 25px;
 }
