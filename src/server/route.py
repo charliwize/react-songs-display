@@ -37,7 +37,7 @@ def update_songs_rating():
     return requests.update_songs_rating()
 
 
-@app.route('/songs/avg/difficulty', methods=['POST'])
+@app.route('/songs/avg/difficulty', methods=['GET'])
 def getDifficultyAverage():
     return requests.getDifficultyAverage()
 

@@ -110,7 +110,7 @@ export default class SongContainer extends React.Component<Props, State>  {
             try {
                 averageDifficulty = await fetch('/songs/avg/difficulty?level=' + e.target.value, {
                     credentials: 'same-origin',
-                    method: 'POST',
+                    method: 'GET',
                     headers: new Headers({
                         'Content-Type': 'application/json',
                     })
@@ -134,7 +134,6 @@ export default class SongContainer extends React.Component<Props, State>  {
 
         return (
             <div className="wrapper">
-                {this.state.error.length ? <div className="error alert alert-info" role="alert">{this.state.error}</div> : null}
                 {this.state.songs.length ? (
                     <>
                         <Row>
@@ -148,6 +147,7 @@ export default class SongContainer extends React.Component<Props, State>  {
                         <Row>
                             <Col md={5}> <SearchBox searchSong={this.searchSong} /></Col>
                         </Row>
+                        {this.state.error.length ? <div className="error alert alert-info" role="alert">{this.state.error}</div> : null}
                         <Row className="songs_list">
                             {
                                 currentSongs.map((song: Song, i: number) => {
