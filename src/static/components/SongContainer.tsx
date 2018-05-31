@@ -67,6 +67,13 @@ export default class SongContainer extends React.Component<Props, State>  {
     }
     public changeRating = async (song: Song, e: any) => {
         let request
+        let songs = [...this.state.songs]
+        songs.forEach((s) => {
+            if (s._id == song._id) {
+                s.rating = e
+            }
+        })
+        this.setState({ songs })
         try {
             request = await fetch('/songs/rating/song_id?_id=' + song._id + '&rating=' + e, {
                 credentials: 'same-origin',
