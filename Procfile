@@ -1,3 +1,3 @@
 
-web: gunicorn --pythonpath src/server/ route:app --preload
-process: npm run watch
+web: npm run build
+process: gunicorn --pythonpath src/server/ route:app --preload
