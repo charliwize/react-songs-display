@@ -118,9 +118,12 @@ export default class SongContainer extends React.Component<Props, State>  {
         const { songs, currentPage, filteredSongs, searchLetter } = this.state
         const lastSongIndexInPage = currentPage * this.state.songsPerPage
         const firstSongIndex = lastSongIndexInPage - this.state.songsPerPage
-        let currentSongs = filteredSongs.length && currentPage === 1 ? filteredSongs.slice(firstSongIndex, lastSongIndexInPage)
+        const currentSongs = filteredSongs.length && currentPage === 1
+            ? filteredSongs.slice(firstSongIndex, lastSongIndexInPage)
             : searchLetter.length && !filteredSongs.length ? []
-                : songs.slice(firstSongIndex, lastSongIndexInPage)
+                : filteredSongs.length
+                    ? filteredSongs.slice(firstSongIndex, lastSongIndexInPage)
+                    : songs.slice(firstSongIndex, lastSongIndexInPage)
 
         return (
             <div className="wrapper">

@@ -7,16 +7,16 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"watch": "webpack --progress -d --config webpack.dev.config.js --watch",
 		"build": "webpack --progress -d --config webpack.dev.config.js",
-		"prettier-watch": "onchange '**/*.tsx' -- prettier --write {{changed}}",
+		"prettier-watch": "onchange './src/**/*.tsx' -- prettier --write {{changed}}",
 		"lint": "./node_modules/.bin/tslint src/**/*.{ts,tsx}",
-		"prettier": "./node_modules/.bin/prettier --write './**/*.{ts,tsx}'"
+		"prettier": "./node_modules/.bin/prettier --write './src/**/*.{ts,tsx}'"
 	},
 	"lint-staged": {
-		"./**/*.{ts,json,css,md,tsx}": [
+		"./src/**/*.{ts,json,css,md,tsx}": [
 			"prettier --write",
 			"git add"
 		],
-		"./**/*.{ts,js,tsx,jsx}": [
+		"./src/**/*.{ts,js,tsx,jsx}": [
 			"jest --findRelatedTests"
 		]
 	},
