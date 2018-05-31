@@ -1,14 +1,15 @@
 body {
     font-family: 'Open Sans', sans-serif;
 }
-html, body {
-    overflow: auto;
-    min-height: 100%;
+
+html,body{
     height: 100%;
+    min-height: 100%;
+    background: #000;
 }
 #app{
-    background-color: #000;
     padding: 50px;
+    height: 100%;
 }
 .artist, .title {
     font-size: 20px;
@@ -129,4 +130,15 @@ html, body {
 }
 .pagination-number{
     margin-top: 25px;
+}
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    #app{
+        height: auto;
+
+    }
+    html, body {
+        height: auto;
+    }
 }
