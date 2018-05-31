@@ -132,13 +132,19 @@ html,body{
     margin-top: 25px;
 }
 @media only screen 
-and (min-device-width : 320px) 
 and (max-device-width : 480px) {
     #app{
         height: auto;
-
+        padding: 0px
     }
     html, body {
         height: auto;
+    }
+    .wrapper {
+        width: 100%;
+    }
+    .songs_list {
+        padding: 20px;
+        text-align: center;
     }
 }

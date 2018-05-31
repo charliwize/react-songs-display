@@ -28,6 +28,7 @@ const SongRow = (Props: Props) => {
             <Col md={7}>
                 <Row><Col><span className="title">{Props.song.title}</span></Col></Row>
                 <Row>
+                    <Col md={4} className="no-pad-marg"><span className="artist">{Props.song.artist}</span></Col>
                     <Col md={3} className="no-pad-marg">
                         <StarRatings
                             rating={Number(Props.song.rating)}
@@ -40,9 +41,7 @@ const SongRow = (Props: Props) => {
                             starEmptyColor="rgba(255, 255, 255, 0.21)"
                         />
                     </Col>
-                    <Col md={4} className="no-pad-marg"><span className="artist">{Props.song.artist}</span></Col>
                     <Col md={4} className="no-pad-marg"><span className="glyphicon glyphicon-option-horizontal pull-right gi-2x" aria-hidden="true"></span></Col>
-
                 </Row>
             </Col>
         </Row>

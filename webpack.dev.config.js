@@ -35,10 +35,5 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx', '.tsx', '.css', '.png', '.jpg']
-    },
-    devServer: {
-        contentBase: path.resolve(__dirname, 'src/static'),
-        compress: true,
-        port: 1986
     }
 }

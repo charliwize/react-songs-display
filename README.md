@@ -7,7 +7,7 @@ This repo uses ReactJS to display songs list from a JSON file. The backend is wr
 ```
 * git clone https://github.com/charliwize/react-songs-display.git
 * npm install
-* npm run watch
+* npm run build
 * cd /src/server 
 ```
 
