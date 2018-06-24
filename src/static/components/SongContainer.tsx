@@ -43,7 +43,7 @@ export default class SongContainer extends React.Component<Props, State>  {
         }
     }
     async componentDidMount() {
-        let songs
+        let songs;
         try {
             songs = await fetch('/songs', {
                 credentials: 'same-origin',
@@ -52,13 +52,16 @@ export default class SongContainer extends React.Component<Props, State>  {
                     'Content-Type': 'application/json',
                 }),
             })
-            songs = await songs.json()
+            songs = await songs.json();
         } catch (e) {
-            this.setState({ error: "Error in getting songs, try again later..." })
+            this.setState({ error: "Error in getting songs, try again later..." });
         }
         if (songs.length) {
-            const levels = Array.from(new Set([...songs].map(song => song.level)))
-            this.setState({ songs, levels })
+            let levels = Array.from(new Set([...songs].map(song => song.level)))
+            levels = levels.sort((a, b) => {
+                return a - b
+            });
+            this.setState({ songs, levels });
         }
     }
 
@@ -66,14 +69,14 @@ export default class SongContainer extends React.Component<Props, State>  {
         this.setState({ currentPage: Number(event.target.id) })
     }
     public changeRating = async (song: Song, e: any) => {
-        let request
-        let songs = [...this.state.songs]
+        let request;
+        let songs = [...this.state.songs];
         songs.forEach((s) => {
             if (s._id == song._id) {
                 s.rating = e
             }
-        })
-        this.setState({ songs })
+        });
+        this.setState({ songs });
         try {
             request = await fetch('/songs/rating/song_id?_id=' + song._id + '&rating=' + e, {
                 credentials: 'same-origin',
@@ -88,8 +91,8 @@ export default class SongContainer extends React.Component<Props, State>  {
     }
 
     public searchSong = (e: any) => {
-        const searchLetter = e.target.value.toLowerCase()
-        let filteredSongs = [...this.state.songs]
+        const searchLetter = e.target.value.toLowerCase();
+        let filteredSongs = [...this.state.songs];
         filteredSongs = filteredSongs.filter((item) => {
             return item.title.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
                 || item.artist.toLowerCase().indexOf(searchLetter.toLowerCase()) !== -1
@@ -99,13 +102,13 @@ export default class SongContainer extends React.Component<Props, State>  {
     }
 
     public setLevel = async (e: any) => {
-        let averageDifficulty
-        let filteredSongs = [...this.state.songs]
+        let averageDifficulty;
+        let filteredSongs = [...this.state.songs];
         filteredSongs = filteredSongs.filter(song => {
             return song.level === Number(e.target.value)
-        })
+        });
 
-        this.setState({ filteredSongs, currentPage: 1 })
+        this.setState({ filteredSongs, currentPage: 1 });
         if (e.target.value.length) {
             try {
                 averageDifficulty = await fetch('/songs/avg/difficulty?level=' + e.target.value, {
@@ -122,9 +125,9 @@ export default class SongContainer extends React.Component<Props, State>  {
     }
 
     public render() {
-        const { songs, currentPage, filteredSongs, searchLetter } = this.state
-        const lastSongIndexInPage = currentPage * this.state.songsPerPage
-        const firstSongIndex = lastSongIndexInPage - this.state.songsPerPage
+        const { songs, currentPage, filteredSongs, searchLetter } = this.state;
+        const lastSongIndexInPage = currentPage * this.state.songsPerPage;
+        const firstSongIndex = lastSongIndexInPage - this.state.songsPerPage;
         const currentSongs = filteredSongs.length && currentPage === 1
             ? filteredSongs.slice(firstSongIndex, lastSongIndexInPage)
             : searchLetter.length && !filteredSongs.length ? []
